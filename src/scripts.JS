@@ -149,6 +149,13 @@ function padZero(num) {
   return (num < 10 ? "0" : "") + num;
 }
 
+function getWeatherAndLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(geoLocationAndWeather);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
 // Function to get weather and location information
 function geoLocationAndWeather(position) {
   const lat = position.coords.latitude;
@@ -159,15 +166,14 @@ function geoLocationAndWeather(position) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const weather = document.querySelector("#weatherInfo span:first-child");
-      const city = document.querySelector("#weatherInfo span:last-child");
-      city.innerText = data.name;
+      const weather = document.querySelector("#weatherInfo");
       weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
     });
 }
 
+getWeatherAndLocation();
 // Array of background images
-const backgroundImages = ["image1.jpg", "image2.jpg", "image3.jpg"];
+const backgroundImages = ["src/image1.jpg", "src/image2.jpg", "src/image3.jpg"];
 
 // Function to set a random background image
 function setRandomBackground() {
