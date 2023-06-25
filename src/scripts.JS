@@ -153,6 +153,7 @@ function padZero(num) {
 function geoLocationAndWeather(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
+  console.log(lat, lon);
   const apiKey = "568dcf485c5517d96c9a7892dece6039";
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   fetch(url)
